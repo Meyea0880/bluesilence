@@ -1,0 +1,380 @@
+/* ----------------------------------
+			共通スタイル
+---------------------------------- */
+body { background-color: #000;}
+body, h1, a, ul, li {
+    font-family: 'Noto Serif JP', serif;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;}
+
+.disp_pc { display: inherit;}
+.disp_sp { display: none;}
+@media screen and (max-width: 768px) {
+.disp_pc { display: none;}
+.disp_sp { display: inherit;}
+}
+
+/* ----------------------------------
+			ヘッダー
+---------------------------------- */
+header {
+				position: sticky;
+    z-index: 1000;
+    top: 0;
+				display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+}
+
+nav ul { display: flex; }
+nav ul li { margin-left: 20px; }
+nav ul li a { color: #fff; }
+
+/* ハンバーガーメニューのスタイル */
+.menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu span {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 4px 0;
+    transition: all 0.4s ease;
+    transform: rotate(0deg);
+}
+
+@media screen and (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        position: fixed;
+        padding-top: 30%;
+								right: -150%;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(51, 51, 51, 0.9);
+        transition: 0.4s;
+    }
+    nav ul li {
+        margin: 0;
+								padding: 25px 0;
+        text-align: center;
+								border-bottom: 1px solid #ccc;
+    }
+nav ul li:first-child { border-top: 1px solid #ccc; padding-top: 20px;}
+
+    .menu {
+        display: flex;
+    }
+    .nav-active {
+        right: 0;
+    }
+    /* ハンバーガーアイコン */
+    .menu.toggle span:nth-child(1) { transform: rotate(-45deg) translate(-8px, 8px);}
+    .menu.toggle span:nth-child(2) { opacity: 0;}
+    .menu.toggle span:nth-child(3) { transform: rotate(45deg) translate(-8px, -8px);}
+}
+/* ----------------------------------
+			ヒーローセクション
+---------------------------------- */
+
+section#hero {
+    position: relative;
+    height: 100vh;
+    background: url('../img/mv.jpg') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+				margin: 0;
+				padding: 0;
+				}
+
+/* ロゴ */
+#hero-logo {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%; 
+    opacity: 0;
+    animation: fadeInLogo 3s forwards ease-in-out;
+}
+
+/* ロゴのフェードイン */
+@keyframes fadeInLogo {
+    from { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@media screen and (max-width: 768px) {
+#hero-logo { width: 90%;}
+}
+
+/* ヒーローエリアのテキスト */
+#hero-text {
+    position: absolute;
+    font-size: 2.5em;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    letter-spacing: 2px;
+    z-index: 900;
+    opacity: 0;
+    animation: fadeInText 2s ease-in-out forwards;
+}
+
+
+
+/* フェードインアニメーション */
+@keyframes fadeInText {
+    0% { opacity: 0; transform: translateY(5px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+
+/* PC */
+@media screen and (min-width: 768px) {
+    #hero-text {
+        top: calc(50% - 550px);
+        font-size: 5em;
+        letter-spacing: 4px;
+    }
+}
+
+/* SP */
+@media screen and (max-width: 767px) {
+    #hero-text {
+        top: calc(50% - 200px);
+    }
+}
+
+/* iPad */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    #hero-text {
+        top: 20vh;
+        font-size: 3em;
+    }
+}
+
+
+/* ----------------------------------
+			ストーリー
+---------------------------------- */
+section#story {
+	background: url("../img/bg1.jpg");
+	background-repeat: no-repeat;
+	background-position: top center;
+ background-color: #000;
+	background-size: cover;
+	width: 100%;
+	margin: 0;
+	padding: 50px 0;
+ color: #fff;
+	min-height: 1000px;
+	}
+
+section#story h2 { font-size: 5em; text-align: center; color: #000;}
+section#story p { font-size: 2em; width: 60%; margin: 50px auto; line-height: 2em; letter-spacing: 0.2em;}
+
+@media screen and (max-width: 768px) {
+section#story { background-size: 220%; padding: 30px 0;	min-height: inherit;}
+section#story h2 { font-size: 2em;}
+section#story p { font-size: 1em; width: 90%; margin: 20px auto; line-height: 1.5em;}
+}
+
+/* ----------------------------------
+			キャスト
+---------------------------------- */
+section#cast {
+ background-color: #000;
+	width: 100%;
+	margin: 0;
+	padding: 50px 0;
+ color: #fff;
+	overflow: hidden;
+	}
+
+section#cast h2 { font-size: 5em; text-align: center;}
+
+section#cast .cast-card { padding: 0 20px;}
+section#cast .cast-card dl { width: 95%; margin: 1em 5%;}
+section#cast .cast-card dt { font-size: 2em; margin-bottom: 0.75em;}
+section#cast .cast-card dt span { font-size: 0.8em; padding-left: 1em;}
+section#cast .cast-card dd { margin: 0; padding: 0;}
+
+.slick-prev:before,
+.slick-next:before {
+    content: "" !important;
+    display: none !important;
+				}
+
+@media screen and (max-width: 768px) {
+section#cast { padding: 30px 0;}
+section#cast h2 { font-size: 2em;}
+section#cast .cast-card dt { font-size: 1.5em; line-height: 1em;}
+section#cast .cast-card dt span { font-size: 0.8em; padding-left: 0;}
+}
+
+
+
+/* ----------------------------------
+			メッセージ
+---------------------------------- */
+section#message {
+	background: url("../img/bg2.jpg");
+	background-repeat: no-repeat;
+	background-position: top center;
+	background-size: 100%;
+ background-color: #000;
+	width: 100%;
+	margin: 0;
+	padding: 50px 0;
+ color: #fff;
+	}
+	
+	section#message h2 { font-size: 5em; text-align: center; color: #000;}
+section#message .message_box {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    width: 60%; margin: 50px auto;
+}
+section#message .message_box p {
+    flex: 0 0 20%;
+    margin: 0;
+    padding: 0;
+}
+section#message .message_box dl {
+    flex: 1;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 15px;
+    margin: 0;
+}
+section#message .message_box dt { font-size: 2em; margin-bottom: 10px;}
+	section#message .message_box dd.career { font-size: 1.2em; margin:0 0 1em 0;}
+	section#message .message_box dd.message { font-size: 1.5em; margin-left: 0;}
+
+@media screen and (max-width: 768px) {
+section#message {	height: auto; background-size: cover;}
+section#message h2 { font-size: 2em; }
+section#message .message_box {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    section#message .message_box p {
+        width: 100%;
+    }
+
+    section#message .message_box dl {
+        width: 100%;
+    }
+				section#message .message_box dd.career { font-size: 0.9em;}
+	section#message .message_box dd.message { font-size: 1.2em; margin:0; padding: 0;}
+}
+
+
+
+/* ----------------------------------
+			前売り券
+---------------------------------- */
+section#ticket {
+ background-color: #000;
+	width: 100%;
+	margin: 0;
+	padding: 50px 0;
+ color: #fff;
+	}
+
+section#ticket h2 { font-size: 5em; text-align: center; color: #fff;}
+section#ticket .disp_pc { width: 60%; margin: 50px auto;}
+
+@media screen and (max-width: 768px) {
+	section#ticket h2 { font-size: 2em; color: #FFF;}
+	section#ticket .disp_sp { width: 90%; margin: 20px auto; }
+}
+
+
+
+
+
+/* ----------------------------------
+ストーリー・メッセージ・キャスト・チケットのフェードイン
+---------------------------------- */
+section#story, section#message, section#cast, section#ticket {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+section#story.show, section#message.show, section#cast.show, section#ticket.show {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ----------------------------------
+			フッタ
+---------------------------------- */
+footer { width: 100%; padding: 30px 0 100px 0; background: linear-gradient(to top, #0a1f33, #0f3547, #1c4c5e, #2a6375, #3a7b8c); color: #fff;}
+footer ul.policy { text-align: center; padding: 0;}
+footer ul.policy li { display: inline-block; margin: 0 10px; padding: 0; position: relative;}
+footer ul.policy li::after { content: "|"; color: #fff; margin-left: 10px;}
+footer ul.policy li:last-child::after { content: "";}
+
+footer a { color: #fff;}
+
+@media screen and (max-width: 768px) {
+footer ul.policy { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+footer ul.policy li { display: block; text-align: center; }
+footer ul.policy li::after { content: "";}
+}
+
+footer ul.social { display: flex; justify-content: center; align-items: center; gap: 20px; list-style: none; padding: 0; margin: 20px 0; }
+footer ul.social li { display: inline-block;}
+footer ul.social li img { height: 50px; width: auto; transition: opacity 0.3s ease;}
+footer ul.social li a:hover img { opacity: 0.7;}
+
+footer p { text-align: center;}
+
+
+
+/* ----------------------------------
+			backToTop
+---------------------------------- */
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+#backToTop img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+#backToTop.show {
+    opacity: 1;
+    visibility: visible;
+}
